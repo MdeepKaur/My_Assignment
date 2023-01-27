@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -46,6 +47,8 @@ class RecyclerViewAdapter(private val arr: List<ProductData>, var myContext: Con
             holder.discount.text=productData.discountPercentage.toString()+"% OFF"
             Picasso.get().load(productData.thumbnail).into(holder.thumbnail)
             holder.btnYes.setOnClickListener {
+                var toast = Toast.makeText(myContext, "Product Added", Toast.LENGTH_SHORT)
+                toast.show()
                 holder.btnYes.visibility = View.GONE
                 holder.btnNo.visibility = View.VISIBLE
                 Global.al.add(productData)
@@ -56,6 +59,8 @@ class RecyclerViewAdapter(private val arr: List<ProductData>, var myContext: Con
                 notifyItemChanged(position)
             }
             holder.btnNo.setOnClickListener {
+                var toast = Toast.makeText(myContext, "Product Removed", Toast.LENGTH_SHORT)
+                toast.show()
                 holder.btnYes.visibility = View.VISIBLE
                 holder.btnNo.visibility = View.GONE
                 Global.al.remove(productData)
@@ -79,7 +84,8 @@ class RecyclerViewAdapter(private val arr: List<ProductData>, var myContext: Con
             holder.discount.text=productData.discountPercentage.toString()+"% OFF"
             Picasso.get().load(productData.thumbnail).into(holder.thumbnail)
             holder.btnYes.setOnClickListener {
-
+                var toast = Toast.makeText(myContext, "Product Added", Toast.LENGTH_SHORT)
+                toast.show()
                 holder.btnYes.visibility = View.GONE
                 holder.btnNo.visibility = View.VISIBLE
                 Global.al.add(productData)
@@ -89,6 +95,9 @@ class RecyclerViewAdapter(private val arr: List<ProductData>, var myContext: Con
                 notifyDataSetChanged()
             }
             holder.btnNo.setOnClickListener {
+
+                var toast = Toast.makeText(myContext, "Product Removed", Toast.LENGTH_SHORT)
+                toast.show()
                 holder.btnYes.visibility = View.VISIBLE
                 holder.btnNo.visibility = View.GONE
                 removeFromAl(productData.id)
